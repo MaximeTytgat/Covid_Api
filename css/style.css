@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+body {
+    background: #FCBF49;
+    display: flex;
+}
+
+h1 {
+    font-family: 'Raleway', sans-serif;
+    margin-bottom: 50px;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+.map__image {
+    width: 36%;
+    margin: 5% 3%;
+    padding: 5%;
+    background-color: #FFFFFF;
+    box-shadow: 2px 2px 4px 0px #934c0a
+}
+
+.map__image path {
+    color: #4dd447;
+    fill: #ba3337;
+    stroke: #FFF;
+    stroke-width: 1px;
+}
+
+.map__image :hover {
+    fill: #ee464a;
+}
+
+
+.covid__infos {
+    padding: 5%;
+    background-color: #FFFFFF;
+    width: 40%;
+    margin: 5%;
+    box-shadow: 2px 2px 4px 0px #934c0a
+}
+
+#deaths strong {
+    color: crimson;
+}
+
+#Healed strong {
+    color: lawngreen;
+}
+
+#hospitalises strong {
+    color: darkcyan;
+}
+
+#newHospitalisations strong {
+    color: darkcyan;
+}
+
+#reanimations strong {
+    color: mediumvioletred;
+}
+
+#newReanimations strong {
+    color: mediumvioletred;
+}
