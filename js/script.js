@@ -9,28 +9,40 @@ const monInit = {
 
 const req = new Request("https://cors-anywhere.herokuapp.com/https://coronavirusapi-france.now.sh/FranceLiveGlobalData", monInit)
 
-fetch(req).then(async res => {
-    console.log(res)
-    const json = await res.json()
-    console.log(json.FranceGlobalLiveData[0])
-    const data = json.FranceGlobalLiveData[0]
 
-    const selection = ["hospitalises", "reanimations", "newHospitalisations", "newReanimations", "deaths", "Healed"]
+const h1 = document.querySelector('h1')
+const selection = ["hospitalises", "reanimations", "newHospitalisations", "newReanimations", "deaths", "Healed"];
+for (const key in selection) {
+    selection.splice(key, 1, document.querySelector(`#${selection[key]} span`))
+}
+
+fetch(req).then(async res => {
+    const json = await res.json()
+
+    const data = json.FranceGlobalLiveData[0]
     const separate_data = [data.hospitalises, data.reanimation, data.nouvellesHospitalisations, data.nouvellesReanimations, data.deces, data.gueris]
 
-    for (const key in selection) {
-        selection.splice(key, 1, document.querySelector(`#${selection[key]}`))
-    }
 
     for (const key in selection) {
-        selection[key].innerHTML += separate_data[key];
+        selection[key].innerHTML = separate_data[key];
     }
 });
 
 
 document.querySelectorAll("path").forEach(element => {
     element.addEventListener('click', element => {
-        console.log(element)
+        const req = new Request(`https://cors-anywhere.herokuapp.com/https://coronavirusapi-france.now.sh/LiveDataByDepartement?Departement=${element.target.id}`, monInit)
+        fetch(req).then(async res => {
+            const json = await res.json()
+
+            const data = json.LiveDataByDepartement[0]
+            const separate_data = [data.hospitalises, data.reanimation, data.nouvellesHospitalisations, data.nouvellesReanimations, data.deces, data.gueris]
+            h1.innerHTML = `Covid 19 <br> ${element.target.id}`
+
+            for (const key in selection) {
+                selection[key].innerHTML = separate_data[key];
+            }
+        })
     })
 })
 
